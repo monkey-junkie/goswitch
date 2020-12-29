@@ -8,7 +8,7 @@ import (
 
 func main() {
 	if len(os.Args) < 4 {
-		fmt.Printf("Usage: ./program code val1 val2 val3\n")
+		fmt.Printf("Usage: ./program num1 num2\n")
 		return
 	}
 	code, _ := strconv.Atoi(os.Args[1])
@@ -27,6 +27,19 @@ func main() {
 	case 3:
 		result := val1 / int(val2)
 		fmt.Println(result)
+	case 4:
+		tmp := int(val2)
+		if tmp == 0 {
+			fmt.Println(tmp)
+		}
+	case 5:
+		tmp := int(val2)
+		if tmp != 0 {
+			boom := val1 / tmp
+			fmt.Println(boom)
+		} else {
+			fmt.Println("Ok")
+		}
 	}
 	return
 }
