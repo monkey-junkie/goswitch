@@ -1,10 +1,16 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 	"strconv"
 )
+
+type MyJson struct {
+	A int `json:"a"`
+	B int `json:"b"`
+}
 
 func main() {
 	if len(os.Args) < 4 {
@@ -15,7 +21,9 @@ func main() {
 	val1 := 1337
 	val2, _ := strconv.ParseUint(os.Args[2], 10, 64)
 	val3, _ := strconv.Atoi(os.Args[3])
-
+	var myObj MyJson
+	jsonStr := `{"a":1337, "b":0}`
+	json.Unmarshal([]byte(jsonStr), &myObj)
 	switch code {
 	case 1:
 		result := val1 / val3
@@ -40,6 +48,15 @@ func main() {
 		} else {
 			fmt.Println("Ok")
 		}
+	case 6:
+		a, b := myObj.A, myObj.B
+		if b == 0 {
+			boom := a / b
+			fmt.Println(boom)
+		}
+	case 7:
+		a, b := myObj.A, myObj.B
+		fmt.Printf("%d\n", a / b)
 	}
 	return
 }
